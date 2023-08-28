@@ -1,0 +1,69 @@
+<div class="form-container">
+  <h4>Current Available Denomination in Machine - Rs. {{totalAmount}}</h4>
+  <form [formGroup]="atmForm" class="atm-form" (ngSubmit)="calculateTotal()">
+    <div>
+      <mat-form-field>
+        <mat-label>2000:</mat-label>
+        <input matInput type="number" formControlName="denomination2000">
+        <mat-error *ngIf="f['denomination2000'].errors?.['min']">Invalid Amount</mat-error>
+      </mat-form-field>
+      <div class="deposited-value">Deposited: {{ (atmService.getDepositedAmount('denomination2000') | async) || 0 }}</div>
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-label>500:</mat-label>
+        <input matInput type="number" formControlName="denomination500">
+        <mat-error *ngIf="f['denomination500'].errors?.['min']">Invalid Amount</mat-error>
+      </mat-form-field>
+      <div class="deposited-value">Deposited: {{ (atmService.getDepositedAmount('denomination500') | async) || 0 }}</div>
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-label>200:</mat-label>
+        <input matInput type="number" formControlName="denomination200">
+        <mat-error *ngIf="f['denomination200'].errors?.['min']">Invalid Amount</mat-error>
+      </mat-form-field>
+      <div class="deposited-value">Deposited: {{ (atmService.getDepositedAmount('denomination200') | async) || 0 }}</div>
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-label>100:</mat-label>
+        <input matInput type="number" formControlName="denomination100">
+        <mat-error *ngIf="f['denomination100'].errors?.['min']">Invalid Amount</mat-error>
+      </mat-form-field>
+      <div class="deposited-value">Deposited: {{ (atmService.getDepositedAmount('denomination100') | async) || 0 }}</div>
+    </div>
+    <button mat-raised-button color="primary" class="deposit-button" [disabled]="!atmForm.valid" type="submit">Deposit</button>
+    <div class="total">
+      Total <span>Rs.</span> <span class="total-amount"> {{ totalAmount }}</span>
+    </div>
+  </form>
+  <!-- <div *ngIf="(totalAmount) > 0" class="total-amount">
+    Total Deposit Amount: <span>Rs.</span> {{ totalAmount }}
+  </div> -->
+
+</div>
+
+<div class="form-container">
+  <div class="withdraw-form">
+    <h3 class="withdraw-heading">Withdraw Amount</h3>
+    <form [formGroup]="withdrawForm" (ngSubmit)="withdrawAmount()">
+      <div>
+        <mat-form-field>
+          <mat-label>Amount:</mat-label>
+          <input matInput type="number" formControlName="withdrawAmount">
+          <mat-error *ngIf="w['withdrawAmount'].errors?.['required']">Amount is required</mat-error>
+          <mat-error *ngIf="w['withdrawAmount'].errors?.['min']">Invalid Amount</mat-error>
+          <mat-error *ngIf="w['withdrawAmount'].errors?.['max']">Exceeds Total Amount</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="center-button">
+        <button mat-raised-button color="warn" class="withdraw-button" type="submit">Withdraw</button>
+      </div>
+      <div class="total">
+        Total <span>Rs.</span> <span class="total-amount"> {{ totalAmount }}</span>
+      </div>
+    </form>
+  </div>
+</div>
+

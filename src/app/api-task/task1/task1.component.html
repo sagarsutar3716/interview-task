@@ -1,0 +1,17 @@
+<div class="loader-container" *ngIf="isLoading">
+  <div class="loader"></div>
+</div>
+<div *ngIf="!isLoading">
+  <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-around center" fxLayoutGap="25px">
+    <mat-card *ngFor="let pr of products?.items" fxFlex="calc(33% - 25px)" fxFlex.sm="calc(50% - 25px)"
+              class="product-card">
+      <img mat-card-image [src]="pr.url" alt="Img of Product" class="product-image">
+      <mat-card-content>
+        <div style="display: flex; justify-content: space-between;">
+          <h4>{{pr.itemName}}</h4>
+          <h6>{{pr.itemPrice}}</h6>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

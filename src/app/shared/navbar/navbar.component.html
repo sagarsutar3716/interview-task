@@ -1,0 +1,32 @@
+<mat-sidenav-container>
+
+	<mat-sidenav #sidenav mode="over">
+		<label>Shrine</label>
+    <hr/>
+		<nav>
+      <a routerLink="" (click)="clickHandler()" routerLinkActive="active"><mat-icon>search</mat-icon></a>
+      <a routerLink="" (click)="clickHandler()" routerLinkActive="active"><mat-icon >filter_alt</mat-icon></a>
+			<a routerLink="/" (click)="clickHandler()" routerLinkActive="active">Home</a>
+      <a routerLink="atm-machine/task-2" (click)="clickHandler()" routerLinkActive="active">Task-2</a>
+		</nav>
+	</mat-sidenav>
+
+	<mat-sidenav-content>
+		<mat-toolbar color="primary">
+			<header>
+				<mat-icon id="toggle" (click)="sidenav.toggle()">menu</mat-icon>
+				<label>Shrine</label>
+        <nav>
+
+          <a routerLink="" routerLinkActive="active"><mat-icon id="search-icon">search</mat-icon></a>
+          <a routerLink="" routerLinkActive="active"><mat-icon id="search-icon">filter_alt</mat-icon></a>
+          <a routerLink="" routerLinkActive="active">Home</a>
+          <a routerLink="atm-machine/task-2" routerLinkActive="active">Task-2</a>
+        </nav>
+      </header>
+		</mat-toolbar>
+    <section>
+      <router-outlet></router-outlet>
+    </section>
+  </mat-sidenav-content>
+</mat-sidenav-container>
